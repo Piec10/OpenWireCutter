@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<entry key="endingGCode"></entry>
+<entry key="feederAxisFeedrate">1000</entry>
+<entry key="startingGCode"></entry>
+<entry key="feederAxisName">X</entry>
+<entry key="cutGCode">Y1 F20</entry>
+</properties>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.openwirecutter.MainWindowController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#handleClose" text="Close" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <HBox>
+         <children>
+            <AnchorPane prefWidth="220.0">
+               <children>
+                  <VBox layoutY="56.0" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                     <children>
+                        <Label text="Settings:" />
+                        <Separator prefWidth="200.0" />
+                        <GridPane>
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Feeder Axis Name:" GridPane.hgrow="ALWAYS" />
+                              <TextField fx:id="feederAxisNameTF" prefWidth="50.0" GridPane.columnIndex="1" />
+                              <Label text="Feeder Axis Feedrate:" GridPane.rowIndex="1" />
+                              <TextField fx:id="feederAxisFeedrateTF" prefWidth="80.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                           </children>
+                        </GridPane>
+                        <Separator prefWidth="200.0" />
+                        <Label text="Cut G-Code:" />
+                        <TextArea fx:id="cutGCodeTA" minWidth="220.0" prefHeight="45.0" />
+                        <Separator prefWidth="200.0" />
+                        <Label text="Starting G-Code:" />
+                        <TextArea fx:id="startingGCodeTA" prefHeight="45.0" prefWidth="200.0" />
+                        <Separator prefWidth="200.0" />
+                        <Label text="Ending G-Code:" />
+                        <TextArea fx:id="endingGCodeTA" prefHeight="45.0" prefWidth="200.0" />
+                        <Separator prefWidth="200.0" />
+                        <AnchorPane VBox.vgrow="ALWAYS" />
+                        <ButtonBar prefHeight="40.0">
+                          <buttons>
+                            <Button mnemonicParsing="false" onAction="#handleSaveSettings" text="Save Settings" />
+                          </buttons>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </ButtonBar>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
+            <AnchorPane prefWidth="270.0">
+               <children>
+                  <VBox spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                     <children>
+                        <Label text="Wire Segments:" />
+                        <Separator prefWidth="200.0" />
+                        <GridPane hgap="5.0" maxHeight="1.7976931348623157E308" minWidth="250.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="70.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="30.0" prefHeight="30.0" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Length:">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Quantity:" GridPane.columnIndex="1">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="lengthTF" GridPane.rowIndex="1" />
+                              <TextField fx:id="quantityTF" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Button fx:id="addOrChangeButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleAddOrChange" prefHeight="20.0" prefWidth="70.0" text="Add" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <Button fx:id="deleteButton" disable="true" mnemonicParsing="false" onAction="#handleDelete" prefWidth="70.0" text="Delete" GridPane.columnIndex="2" />
+                           </children>
+                        </GridPane>
+                        <Separator prefWidth="200.0" />
+                        <TableView fx:id="cutListTableView" VBox.vgrow="ALWAYS">
+                          <columns>
+                            <TableColumn fx:id="lengthColumn" prefWidth="110.0" text="Length" />
+                            <TableColumn fx:id="quantityColumn" prefWidth="110.0" text="Quantity" />
+                          </columns>
+                        </TableView>
+                        <ButtonBar minHeight="40.0" prefHeight="40.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
+            <AnchorPane HBox.hgrow="ALWAYS">
+               <children>
+                  <VBox layoutX="10.0" layoutY="10.0" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                     <children>
+                        <Label text="G-Code:" />
+                        <Separator prefWidth="200.0" />
+                        <TextArea fx:id="gCodeTA" VBox.vgrow="ALWAYS" />
+                        <ButtonBar prefHeight="40.0" prefWidth="200.0">
+                          <buttons>
+                            <Button mnemonicParsing="false" onAction="#handleSaveGCode" prefWidth="100.0" text="Save to File" />
+                          </buttons>
+                        </ButtonBar>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+   </center>
+   <bottom>
+      <AnchorPane prefHeight="25.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Separator prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <Label fx:id="infoLabel" text="Label" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="5.0" />
+         </children>
+      </AnchorPane>
+   </bottom>
+</BorderPane>
